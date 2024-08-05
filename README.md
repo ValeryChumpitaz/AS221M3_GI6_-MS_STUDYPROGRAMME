@@ -4,7 +4,7 @@ Este documento describe los estándares y reglas generales para el diseño y man
 
 ## 📝 Reglas Generales
 
-- **Nombre de la Base de Datos**: Debe ser consistente y estar bien definido, usando solo letras mayúsculas. Por ejemplo: `DB_PROYECTO`.
+- **Nombre de la Base de Datos**: Debe ser consistente y estar bien definido. En este Caso usamos : `ArtemioSolutions`.
 
 - **Charset**: Define el charset de la base de datos para permitir la compatibilidad con caracteres especiales como ñ, á, etc. Recomendado: `UTF-8`.
 
