@@ -20,7 +20,7 @@ El proyecto `vg-web-artemiosolutions` está diseñado para gestionar y mostrar i
    Versión: v14.18.1 o superior
 
 2. **Angular CLI**  
-   Versión: 12.2.11 o superior
+   Versión: 16.2.11 o superior
 
 3. **IDE**  
    Utilizar IntelliJ IDEA
