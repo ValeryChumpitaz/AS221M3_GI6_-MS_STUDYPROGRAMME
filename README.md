@@ -1,4 +1,4 @@
-# PRS211 - Estándares para Spring Cloud Gateway y Keycloak
+# PRS2 - Estándares para Spring Cloud Gateway y Firebase
 
 ## Spring Cloud Gateway
 
@@ -34,39 +34,36 @@ La estructura de Spring Cloud Gateway incluye:
 - **`routes/`**: Definición de rutas y políticas de enrutamiento.
 - **`filters/`**: Filtros personalizados para modificar solicitudes y respuestas.
 
-## Integración con Keycloak
+## Integración con Firebase
 
-**Keycloak** es una plataforma de código abierto para la gestión de identidades y la seguridad de aplicaciones. Para integrar Keycloak en tu aplicación con Spring Cloud Gateway, sigue estos pasos:
+**Firebase** es una plataforma de desarrollo de aplicaciones que proporciona herramientas para la autenticación y seguridad de aplicaciones. Para integrar Firebase en tu aplicación con Spring Cloud Gateway, sigue estos pasos:
 
-1. **Configuración de Keycloak**: Asegúrate de tener Keycloak configurado y funcionando. Consulta la [documentación oficial](https://www.keycloak.org/documentation) para detalles.
+1. **Configuración de Firebase**: Asegúrate de tener Firebase Auth configurado en tu proyecto de Firebase Console. Consulta la [documentación oficial](https://firebase.google.com/docs/auth) para detalles.
 
 2. **Configuración en la Aplicación o yml**:
 
     - Abre el archivo `application.properties` de tu proyecto.
-    - Configura las propiedades de conexión a Keycloak, especificando la URL de Keycloak, el realm y el cliente. Ejemplo:
+    - Configura las propiedades de conexión a Firebase, especificando el endpoint de autenticación. Ejemplo:
       ```properties
-      # Configuración de Keycloak
+      # Configuración de Firebase Auth
       spring:
         security:
           oauth2:
             resourceserver:
               jwt:
-                issuer-uri: http://localhost:8090/realms/PRS
+                issuer-uri: https://securetoken.google.com/tu-proyecto-id
       ```
 
-3. **Protección de Rutas**: Usa Spring Security junto con Keycloak para proteger las rutas de tu aplicación. Define roles y restricciones de acceso en tu configuración de seguridad.
+3. **Protección de Rutas**: Usa Spring Security junto con Firebase para proteger las rutas de tu aplicación. Define roles y restricciones de acceso en tu configuración de seguridad.
 
 4. **Autenticación y Autorización**:
 
-    - Los usuarios serán redirigidos a Keycloak para la autenticación al intentar acceder a rutas protegidas.
-    - Keycloak gestionará la autenticación y proporcionará tokens JWT para tu aplicación.
+    - Los usuarios serán autenticados a través de Firebase Auth al intentar acceder a rutas protegidas.
+    - Firebase gestionará la autenticación y proporcionará tokens JWT para tu aplicación.
 
-5. **Uso de Tokens JWT**: Verifica la identidad del usuario y autoriza el acceso a recursos protegidos utilizando los tokens JWT proporcionados por Keycloak.
+5. **Uso de Tokens JWT**: Verifica la identidad del usuario y autoriza el acceso a recursos protegidos utilizando los tokens JWT proporcionados por Firebase.
 
 ## Arquitectura
 
-La arquitectura de Spring Cloud Gateway y su integración con Keycloak garantiza una gestión eficiente de solicitudes y una robusta seguridad en la aplicación.
+La arquitectura de Spring Cloud Gateway y su integración con Firebase garantiza una gestión eficiente de solicitudes y una robusta seguridad en la aplicación.
 
----
-
-**Nota**: Asegúrate de seguir estos estándares para mantener la coherencia y calidad en la implementación de Spring Cloud Gateway y Keycloak en tu proyecto.
