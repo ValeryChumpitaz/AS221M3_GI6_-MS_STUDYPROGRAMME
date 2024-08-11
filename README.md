@@ -1,5 +1,5 @@
-# vg-web-artemiosolutions - Frontend para Programas de Estudio
-
+# vg-web-artemiosolutions 
+# Implementacion del Login con FireBase
 ## Estructura del Proyecto
 
 El proyecto `vg-web-artemiosolutions` está diseñado para gestionar y mostrar información relacionada con programas de estudio. A continuación se detalla la estructura y los estándares de desarrollo para el frontend.
