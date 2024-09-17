@@ -1,0 +1,144 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+  [ngClass]="{'block': showForm, 'hidden': !showForm}">
+  <!-- <div class="relative w-full max-w-3xl mx-auto bg-white rounded-lg shadow-lg">
+    <div class="flex items-start justify-between p-4 border-b border-gray-200 rounded-t"> -->
+  <div class="relative w-full max-w-lg mx-auto bg-white rounded-lg shadow-lg">
+    <div class="flex items-start justify-between p-3 border-b border-gray-200 rounded-t">
+
+      <h5 class="text-xl font-medium text-gray-800" id="estudianteModaLabel"
+        style="display: flex; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #115aae">
+        <strong>FORMULARIO CONTACTANOS</strong>
+      </h5>
+      <button type="button"
+        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+        (click)="closeModal()">
+        <i class="icon ph-bold ph-x"></i>
+      </button>
+    </div>
+    <div class="p-4 space-y-4">
+      <form [formGroup]="contactFormfrom" (ngSubmit)="onSubmit()">
+        <ng-container *ngIf="currentStep === 1">
+          <div class="mb-4">
+            <label for="txtName" class="block text-sm font-medium text-gray-700">NOMBRE:</label>
+            <input formControlName="name" type="text" id="txtName" name="txtName"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('name')?.valid && contactFormfrom.get('name')?.touched, 'border-red-500': contactFormfrom.get('name')?.invalid && contactFormfrom.get('name')?.touched}" (input)="convertToUppercase('name')">
+            <div *ngIf="contactFormfrom.get('name')?.invalid && contactFormfrom.get('name')?.touched"
+              class="mt-1 text-sm text-red-500">Solo debe contener solo letras</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtLastnamePaternal" class="block text-sm font-medium text-gray-700">APELLIDO PATERNO:</label>
+            <input formControlName="lastname_paternal" type="text" id="txtLastnamePaternal" name="txtLastnamePaternal"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('lastname_paternal')?.valid && contactFormfrom.get('lastname_paternal')?.touched, 'border-red-500': contactFormfrom.get('lastname_paternal')?.invalid && contactFormfrom.get('lastname_paternal')?.touched}"
+              (input)="convertToUppercase('lastname_paternal')">
+            <div *ngIf="contactFormfrom.get('lastname_paternal')?.invalid && contactFormfrom.get('lastname_paternal')?.touched"
+              class="mt-1 text-sm text-red-500">Solo debe contener solo letras</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtLastnameMaternal" class="block text-sm font-medium text-gray-700">APELLIDO MATERNO:</label>
+            <input formControlName="lastname_maternal" type="text" id="txtLastnameMaternal" name="txtLastnameMaternal"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('lastname_maternal')?.valid && contactFormfrom.get('lastname_maternal')?.touched, 'border-red-500': contactFormfrom.get('lastname_maternal')?.invalid && contactFormfrom.get('lastname_maternal')?.touched}"
+              (input)="convertToUppercase('lastname_maternal')">
+            <div *ngIf="contactFormfrom.get('lastname_maternal')?.invalid && contactFormfrom.get('lastname_maternal')?.touched"
+              class="mt-1 text-sm text-red-500">Solo debe contener solo letras</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtBirthdate" class="block text-sm font-medium text-gray-700">FECHA DE NACIMIENTO:</label>
+            <input formControlName="birthdate" type="date" id="txtBirthdate" name="txtBirthdate"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('birthdate')?.valid && contactFormfrom.get('birthdate')?.touched, 'border-red-500': contactFormfrom.get('birthdate')?.invalid && contactFormfrom.get('birthdate')?.touched}">
+            <div *ngIf="contactFormfrom.get('birthdate')?.invalid && contactFormfrom.get('birthdate')?.touched"
+              class="mt-1 text-sm text-red-500">Lo sentimos usted es menor de 14 años</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtDocumentType" class="block text-sm font-medium text-gray-700">TIPO DE DOCUMENTO:</label>
+            <select formControlName="document_type" id="txtDocumentType" name="txtDocumentType"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('document_type')?.valid && contactFormfrom.get('document_type')?.touched, 'border-red-500': contactFormfrom.get('document_type')?.invalid && contactFormfrom.get('document_type')?.touched}">
+              <option value="" disabled selected>Elegir documento</option>
+              <option value="DNI">DNI</option>
+              <option value="CNE">CNE</option>
+            </select>
+            <div *ngIf="contactFormfrom.get('document_type')?.invalid && contactFormfrom.get('document_type')?.touched"
+              class="mt-1 text-sm text-red-500">Campo obligatorio</div>
+          </div>
+
+          <div class="mb-4">
+            <label for="txtDocumentNumber" class="block text-sm font-medium text-gray-700">NÚMERO DE DOCUMENTO:</label>
+            <input formControlName="documentNumber" type="text" id="txtDocumentNumber" name="txtDocumentNumber"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('documentNumber')?.valid && contactFormfrom.get('documentNumber')?.touched, 'border-red-500': contactFormfrom.get('documentNumber')?.invalid && contactFormfrom.get('documentNumber')?.touched}">
+            <div *ngIf="contactFormfrom.get('documentNumber')?.invalid && contactFormfrom.get('documentNumber')?.touched"
+              class="mt-1 text-sm text-red-500">Ingrese: 8 digitos para DNI / 15 digitos para CNE</div>
+          </div>
+        </ng-container>
+      
+        <ng-container *ngIf="currentStep === 2">
+      
+          <div class="mb-4">
+            <label for="txtEmail" class="block text-sm font-medium text-gray-700">CORREO ELECTRÓNICO:</label>
+            <input formControlName="email" type="email" id="txtEmail" name="txtEmail"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('email')?.valid && contactFormfrom.get('email')?.touched, 'border-red-500': contactFormfrom.get('email')?.invalid && contactFormfrom.get('email')?.touched}">
+            <div *ngIf="contactFormfrom.get('email')?.invalid && contactFormfrom.get('email')?.touched"
+              class="mt-1 text-sm text-red-500">El Correo Electrónico no válido</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtPhone" class="block text-sm font-medium text-gray-700">CELULAR:</label>
+            <input formControlName="phone" type="text" id="txtPhone" name="txtPhone"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('phone')?.valid && contactFormfrom.get('phone')?.touched, 'border-red-500': contactFormfrom.get('phone')?.invalid && contactFormfrom.get('phone')?.touched}">
+            <div *ngIf="contactFormfrom.get('phone')?.invalid && contactFormfrom.get('phone')?.touched"
+              class="mt-1 text-sm text-red-500">Ingres 9 digitos númerico y que empiece con el 9</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtPhoneOptional" class="block text-sm font-medium text-gray-700">CELULAR OPCIONAL:</label>
+            <input formControlName="phone_optional" type="text" id="txtPhoneOptional" name="txtPhoneOptional"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('phone_optional')?.valid && contactFormfrom.get('phone_optional')?.touched, 'border-red-500': contactFormfrom.get('phone_optional')?.invalid && contactFormfrom.get('phone_optional')?.touched}">
+            <div *ngIf="contactFormfrom.get('phone_optional')?.invalid && contactFormfrom.get('phone_optional')?.touched"
+              class="mt-1 text-sm text-red-500">Ingres 9 digitos númerico y que empiece con el 9</div>
+          </div>
+          <div class="mb-4">
+            <label for="txtStudyProgramId" class="block text-sm font-medium text-gray-700">PROGRAMA DE ESTUDIO:</label>
+            <select formControlName="studyProgramId" id="txtStudyProgramId" name="txtStudyProgramId"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('studyProgramId')?.valid && contactFormfrom.get('studyProgramId')?.touched, 'border-red-500': contactFormfrom.get('studyProgramId')?.invalid && contactFormfrom.get('studyProgramId')?.touched}">
+              <option value="" disabled selected>Elegir programa de estudio</option>
+              <option *ngFor="let program of studyProgrammes" [value]="program.id">{{ program.name }}</option>
+            </select>
+            <div *ngIf="contactFormfrom.get('studyProgramId')?.invalid && contactFormfrom.get('studyProgramId')?.touched"
+              class="mt-1 text-sm text-red-500">Campo obligatorio</div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="txtDescription" class="block text-sm font-medium text-gray-700">DESCRIPCIÓN:</label>
+            <textarea formControlName="description" id="txtDescription" name="txtDescription" rows="4"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [ngClass]="{'border-green-500': contactFormfrom.get('description')?.valid && contactFormfrom.get('description')?.touched, 'border-red-500': contactFormfrom.get('description')?.invalid && contactFormfrom.get('description')?.touched}"></textarea>
+            <div *ngIf="contactFormfrom.get('description')?.invalid && contactFormfrom.get('description')?.touched"
+              class="mt-1 text-sm text-red-500">La palabra ingresada es inapropiada / 5 letras minímo</div>
+          </div>
+        </ng-container>
+      
+        <div class="flex justify-between mt-4">
+          <button type="button" (click)="prevStep()"
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" *ngIf="currentStep > 1">Anterior</button>
+          <button type="button" (click)="nextStep()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" *ngIf="currentStep < 2">Siguiente</button>
+          <button type="submit"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" *ngIf="currentStep === 2">Guardar</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
